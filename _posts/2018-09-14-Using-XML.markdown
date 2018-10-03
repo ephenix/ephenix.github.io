@@ -1,0 +1,143 @@
+---
+layout: post
+title:  "Working with XML & PowerShell - Part 0"
+date:   2018-09-14 00:35:14 -0600
+categories: powershell xml guide series
+---
+
+## Introduction
+
+In this guide, I hope to introduce you to manipulating XML data using PowerShell. We should cover the following topics:
+
+1. Loading XML data into PowerShell
+2. How to reference nodes and attributes
+3. Some of the nuances behind nodes and attributes when they are overloaded
+4. Introduction to XPath
+5. Saving your XML
+
+
+Unlike JSON, XML nodes have both children (nested nodes) and attribues. XML also supports comments, and certain special attributes such as schemas. We'll cover those later on.
+
+You can find all the supporting xml and Powershell files for this guide on github, [here](https://github.com/ephenix/XML-Powershell).
+
+I encourage you to step through the powershell and play with the objects at each step.
+
+Keep in mind, the default ToString of the XMLElement object can be quite misleading -- Collections of nodes can be truncated by the text output. It's not quite straightforward when you are given an attribute, a child node, a collection of nodes, a node's name, or a '#Text' value. Doing testing and writing robust code with the information from this guide will ensure consistency when working with data of varying structures.
+
+---
+
+## Loading the XML into PowerShell
+Here is the xml we'll be working with for this first example:
+
+[00.xml](https://github.com/ephenix/XML-Powershell/blob/master/00.xml)
+```xml
+<rootnode>
+    <node attribute="value1" />
+    <node attribute="value2" name="nameattribute">
+        <attribute>value3</attribute>
+    </node>
+</rootnode>
+```
+
+```PowerShell
+[xml]$XMLDocument = Get-Content ".\00.xml"
+```
+
+Casting a string to [xml] yields an XMLDocument object. This is what we'll use to parse through our XML.
+
+## Referencing Nodes and Attributes
+
+Both nodes and attributes are referenced by a Property added to their parent XMLDocument or XMLElement object.
+
+The first node of our XML here is the \<rootnode> tag, which we'd reference with $XMLDocument.rootnode
+
+```PowerShell
+$XMLDocument | Get-Member -MemberType Property
+
+   TypeName: System.Xml.XmlDocument
+Name     MemberType Definition
+----     ---------- ----------
+rootnode Property   System.Xml.XmlElement rootnode {get;}
+```
+
+To get the name of the element you are currently on, we can use the built in .name property of XMLDocument and XMLElement objects. If there is also an attribute or child node called 'name', you can use the inhereted method get_name() to retrieve the name of your node.
+
+```PowerShell
+$XMLDocument.name -eq "#document"
+$XMLDocument.rootnode.name -eq "rootnode"
+# because rootnode.node[0] doesn't have a name attribute, .name gives the node name.
+$XMLDocument.rootnode.node[0].name -eq "node"
+# node[1] does have a name attribute, so it returns that value instead.
+$XMLDocument.rootnode.node[1].name -eq "nameattribute"
+$XMLDocument.rootnode.node[1].get_name() -eq "node"
+```
+
+When there are child nodes and attributes with the same name, the property returns an object[] array of the '#Text' properties of the attributes and child nodes, or the 'name' property if they don't have text.
+
+```PowerShell
+
+$XMLDocument.rootnode.node[1] | Get-Member -MemberType Property
+
+   TypeName: System.Xml.XmlElement
+
+Name      MemberType Definition
+----      ---------- ----------
+attribute Property   System.Object[] attribute {get;}
+name      Property   string name {get;set;}
+
+$XMLDocument.rootnode.node[1].Attribute
+value2
+value3
+
+$XMLDocument.rootnode.node[1].Attribute | % { $_.getType().name }
+String
+String
+
+```
+To robustly reference either the attributes or child nodes, use the corresponding collection properties for 'Attributes' or 'ChildNodes':
+
+```PowerShell
+$XMLDocument.rootnode.node[1].Attributes | gm
+
+   TypeName: System.Xml.XmlAttribute
+
+( $XMLDocument.rootnode.node[1].Attributes | ? Name -eq "attribute" ).'#Text' -eq "value2"
+
+$XMLDocument.rootnode.node[1].ChildNodes.'#Text' -eq "value3"
+```
+
+And of course, as these property names may also be overwritten, there are inhereted methods to reference these as well -- get_ChildNodes() and get_Attributes(). For a full list of these inherited methods, you can run
+
+```PowerShell
+$XMLDocument.rootnode | Get-Member -Force
+```
+---
+## XPath Lookups
+
+[XPath](https://www.w3schools.com/xml/xpath_intro.asp) is a way of codifying node paths. [Syntax Reference](https://www.w3schools.com/xml/xpath_syntax.asp).
+
+We can select nodes with string-based paths more robustly than we could otherwise do with regular expressions.
+
+```PowerShell
+#Select all nodes with an attribute called "name"
+$XMLDocument.SelectNodes("//*[@name]")
+
+#Select all nodes with a child node
+$XMLDocument.SelectNodes("//*[*]")
+#Select all nodes with a child node of type "attribute"
+$XMLDocument.SelectNodes("//*[attribute]")
+```
+
+I use XPath extensively to store the location for specific values in our configs we need to change. We will go over the schema I use in a future post.
+
+---
+
+## Saving the XML
+
+Alright, say we've loaded our XML, found our node using either the automatic properties, inherited methods, or XPath. We've modified the values we need to, now what?
+
+The XMLDocument is strictly in-memory -- we haven't changed the original file. In order to save our XML to disk, we neet to call the .Save( \<Path> ) method of our XMLDocument object.
+
+```PowerShell
+$XMLDocument.Save($Path)
+```
