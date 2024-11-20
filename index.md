@@ -4,3 +4,99 @@
 
 layout: home
 ---
+
+Name: Eric Phenix
+Summary: Engineering Manager, Consultant
+Contact: engineering@ericphenix.com
+
+Executive Summary: 
+  - Key stakeholder in digital transformation, devops, and AIML initiatives.
+  - Enables teams through individual and group development, coaching, and mentorship.
+  - Develops efficient and managable infrastructure at scale.
+  - Identifies organizational skill gaps and resourcing plans.
+  - Organizes key organizational practices such as the technology Steering Committee, Change Approval Board, and Cloud Center of Excellence.
+
+Professional Experience:
+  GigaOm:
+    Role: Cloud Engineering Manager
+    Date: Aug 2023 - Present
+    Description: 
+      - Owner of all cloud and hosting platforms for both internal and commissioned workloads.
+      - Manage team of internal and external analysts for commissioned research of software, data, and cloud products.
+      - Scope customer engagements and advise customers on testable hypotheses for greatest sales impact.
+      - Author reports and competitive analysis on AIML, cloud platforms, database, big data, and security.
+      - Oversaw $1.8M in revenue from commissioned engineering work across 20+ engagements.
+      - Reduced testing infrastructre overhead by over 60%.
+  Amazon Web Services:
+    - Role: Sr. Customer Delivery Architect
+      Date: Feb 2023 - Apr 2023 
+      Description:
+        - Pre-Sales technical architect for the Key Accounts practice, delivering for customers with $100M+ annual platform spend and $10M+ annual professional services spend.
+        - Defines professional services engagement scoping, resource requirements, workstreams, delivery milestones, and contractual language in Statements of Work.
+        - Leads Technical Delivery Leads across multiple engagements for escalation and solution quality review.
+        - Assisted a major financial customer with the migration of a business-critical database from Oracle onto Amazon Aurora.
+        - Lead the development of infrastructure and DevOps for a Serverless Data Lake and machine learning pipeline for a major medical customer
+    - Role: Sr. Cloud Infrastructure Architect
+      Date: Jun 2022 - Feb 2023
+      Description:
+        - Technical Delivery Lead for professional services engagements, technical escalation point for multiple workstreams within each engagement.
+        - Developed and lead internal training & certification programs for AWS consultants, including Serverless, Networking, Infrastructure as Code, and Python.
+        - Lead the development of infrastructure and DevOps for a Serverless Data Lake and machine learning pipeline for a major medical customer
+        - Earned $1.5M in additional professional services revenue by successfully translating over 12000 firewall rules to AWS Network Firewall, enabling a major security company to migrate their PCI environment to AWS.
+    - Role: Cloud Infrastructure Architect
+      Date: Aug 20219 - Jun 2022
+      Description:
+        - Senior resource for over 12 professional services engagements, maintaining an 87% utilization for over 3 years.
+        -	Lead developer for Account Factory for Terraform, an AWS solution for managing multi-account environments at scale. Responsible for over 40% of the total code base on release.
+        - Developed event-driven automation to replace instances from a customer's Spot Instance fleet before the instance would be shut down, reducing batch job failures by over 80% and enabling the customer to continue leveraging the savings of AWS Spot intances.
+        - Helped a customer meet data center exit timelines through the adoption of AWS Step Functions to orchestrate the migration of over 1000 applications.
+  BPX Energy:
+    Role: Consultant, Cloud Architect
+    Date: Feb 2019 - Aug 2019
+    Description:
+      - Cloud Architecture supporting the AWS-based Process-Control-Network (PCN) for the $10B acquisition of energy assets in the Permian Basin.
+      - Develop python automation to ensure compliance, cost-effectiveness, and security of AWS resources
+      - Collaborate with Application Integration teams on DevOps and cloud-native initiatives
+      - Collaborate with external partners such as CloudReach and Infosys to develop solutions and train operations staff
+  Toastmasters International:
+    Role: DevOps Lead
+    Date: May 2018 - Feb 2019
+    Description:
+      - Developed DevOps department roadmaps, headcount requirements, & budgets for the 2019 FY 
+      - Created Change Approval Board (CAB) and implemented access escalation process to further secure the production environment from unintended changes
+      - Developed migration strategy for web platform to move from AWS to Azure to further integrate with the company’s ERP – Dynamics 365, and leverage Microsoft’s non-profit incentive pricing
+      - Contributed to open-source Dynamics 365 modules for Azure DevOps; leveraged Azure Pipelines to deploy Dynamics resources continuously
+      - Developed automated testing & deployment pipeline for web applications
+  loanDepot:
+    Role: DevOps Engineer
+    Date: Jul 2017 - May 2018
+    Description:
+      - Engineer supporting the development of next generation fin-tech and 200+ developers.
+      - Developed extensive CMDB for over 120 applications deployed to over 12 environments.
+      - Managed 5-host Elasticsearch cluster ingesting over 100 million application logs daily.
+      - Developed log archival & shipping mechanism to send production logs to AWS Glacier.
+      - Developed extensive application deployment pipeline using Team Foundation Server.
+      - Developed PowerShell wrapper around F5's REST API to integrate Network and DNS load balancer configuration with CMDB for automated deployment of network constructs. 
+  Precision Discovery:
+    Role: DevOps Manager
+    Date: Oct 2016 - Apr 2017
+    Description:
+      - Automated the deployment of single-tenant instances of kCura Relativity, a distributed legal document hosting & processing application; including virtual networking, storage LUNs, and VMs.
+      - Developed database to centrally track customer data across numerous appliances, storage arrays, databases, and COTS products.
+  DTI Global:
+    Role: Senior Systems Engineer
+    Date: Feb 2015 - Oct 2016
+    Description:
+      - Data Center Lead for two facilities hosting e-Discovery workloads.
+      - Developed business justification for $250K+ capex investiture in Cisco UCS and Nimble hybrid storage to alleviate storage and compute bottlenecks.
+      - Full-stack infrastructure management including Cisco, HP, and Fortinet networking, HP and Dell compute, Hitachi HNAS and SpectraLogic storage, and 100+ Citrix thin clients.
+  WJ Bradely Mortgage Captial:
+    Role: Systems Administrator
+    Date: May 2014 - Feb 2015
+    Description:
+      - Managed network, servers, printers, and end user devices for over 1000 corporate and remote staff.
+      - Collaborated with Business Intelligence and Pricing team on database performance & query tuning
+
+Certifications:
+AWS Certified Solutions Architect - Professional:
+  https://www.credly.com/badges/8f1b1fba-b93c-4eed-96d6-550f4b189be9
